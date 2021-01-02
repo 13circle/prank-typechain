@@ -1,0 +1,9 @@
+{
+  "name": "prank-typechain",
+  "version": "1.0.0",
+  "description": "Learning Typescript fundamentals with Nico Sensai",
+  "main": "index.js",
+  "repository": "git@github.com:13circle/prank-typechain.git",
+  "author": "13circle <13circle97@gmail.com>",
+  "license": "MIT"
+}
