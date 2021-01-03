@@ -1,7 +1,19 @@
-const func = (name: string, age: number, gender: string): string => {
-  return `Hello ${name}, you are ${age}, you are a ${gender}`;
+interface Human {
+  name: string;
+  age: number;
+  gender: string;
+}
+
+const person = {
+  name: "Yee",
+  gender: "male",
+  age: 23,
 };
 
-console.log(func("Yee", 23, "male"));
+const func = (person: Human): string => {
+  return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}`;
+};
+
+console.log(func(person));
 
 export {};
