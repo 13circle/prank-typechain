@@ -5,5 +5,12 @@
   "main": "index.js",
   "repository": "git@github.com:13circle/prank-typechain.git",
   "author": "13circle <13circle97@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "prestart": "yarn tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
 }
