@@ -1,4 +1,5 @@
 import * as CryptoJS from "crypto-js";
+import * as Joi from "joi";
 
 class Block {
   public index: number;
@@ -14,6 +15,17 @@ class Block {
     data: string
   ): string =>
     CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
+
+  static validateStructure = (aBlock: Block): boolean =>
+    !Joi.object()
+      .keys({
+        index: Joi.number(),
+        hash: Joi.string(),
+        previousHash: Joi.string(),
+        timestamp: Joi.number(),
+        data: Joi.string(),
+      })
+      .validate(aBlock).error;
 
   constructor(
     index: number,
@@ -66,6 +78,16 @@ const createNewBlock = (data: string): Block => {
   return newBlock;
 };
 
-console.log(createNewBlock("Hello"), createNewBlock("bye bye"));
+const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
+  if(!Block.validateStructure(candidateBlock)) {
+    return false;
+  } else if(previousBlock.index + 1 !== candidateBlock.index) {
+    return false;
+  } else if(previousBlock.hash !== candidateBlock.previousHash) {
+    return false;
+  }
+  // TODO: Validate hash existance
+  return true;
+};
 
 export {};
